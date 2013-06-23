@@ -50,18 +50,18 @@ function editThis( sID )
     oTransfer.submit();
 }
 
-
 </script>
+
 <div class="center">
 
-<form name="transfer" id="transfer" action="[{ $shop->selflink }]" method="post">
-    [{ $shop->hiddensid }]
-    <input type="hidden" name="oxid" value="[{ $oxid }]">
-    <input type="hidden" name="cl" value="">
-    <input type="hidden" name="updatelist" value="1">
-    <input type="hidden" name="language" value="[{ $actlang }]">
-    <input type="hidden" name="editlanguage" value="[{ $actlang }]">
-</form>
+    <form name="transfer" id="transfer" action="[{ $shop->selflink }]" method="post">
+        [{ $shop->hiddensid }]
+        <input type="hidden" name="oxid" value="[{ $oxid }]">
+        <input type="hidden" name="cl" value="">
+        <input type="hidden" name="updatelist" value="1">
+        <input type="hidden" name="language" value="[{ $actlang }]">
+        <input type="hidden" name="editlanguage" value="[{ $actlang }]">
+    </form>
 
     <h2>[{ oxmultilang ident="JXINVENTORY_STORELIST" }]
         <input class="edittext" style="position:relative; top:-2px;" type="submit" 
@@ -169,7 +169,7 @@ function editThis( sID )
         [{foreach name=outer item=Inventory from=$aInventory}]
             [{ cycle values="listitem,listitem2" assign="listclass" }]
             [{assign var="rownum" value=$rownum+1}]
-            [{ if $Inventory.invstock > 0 }]
+            [{ if $Inventory.jxinvstock > 0 }]
                 [{assign var="totalbuysum" value=$totalbuysum+$Inventory.invbuysum}]
                 [{assign var="totalsellsum" value=$totalsellsum+$Inventory.invsellsum}]
                 [{assign var="stocksum" value=$stocksum+$Inventory.jxinvstock}]
@@ -189,9 +189,6 @@ function editThis( sID )
                     <table cellspacing="0" cellpadding="0" width="100%" border="0"><tr>
                         <td width="35%"><span style="[{if $Inventory.jxinvstock < 0}]color:#ff0000;[{/if}]">[{ $Inventory.jxinvstock }]&nbsp;</span></td>
                         <td align="right">
-                            [{*<input class="edittext" type="submit" value=" -&gt; "
-                            onClick="javascript:document.forms['showinv'].elements['oxid'].value = '[{$Inventory.oxid}]';document.forms['showinv'].elements['fnc'].value = 'copyInv2Shop';" >
-                            *}]
                             <div style="background-color:#323232; border-radius:3px;height:14px;width:18px;padding-top:-2px">
                                 <a href="javascript:javascript:document.forms['showinv'].elements['oxid'].value = '[{$Inventory.oxid}]';document.forms['showinv'].elements['fnc'].value = 'copyInv2Shop';document.forms.showinv.submit();" class="listheader">
                                     <span style="color:#fff;position:relative;top:-2px;font-size:0.9em;">&#10140;&nbsp;</span>

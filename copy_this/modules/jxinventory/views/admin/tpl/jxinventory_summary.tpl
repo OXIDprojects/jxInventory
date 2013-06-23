@@ -1,10 +1,5 @@
 [{*debug*}]
 [{include file="headitem.tpl" title="GENERAL_ADMIN_TITLE"|oxmultilangassign box=" "}]
-[{* 
-<script type="text/javascript" src="[{$shop->basetpldir}]sortable/sortable.js"></script>
-<link rel="stylesheet" type="text/css" href="[{$shop->basetpldir}]sortable/sortable.css" />
-<script type="text/javascript">image_path = "[{$shop->basetpldir}]sortable/";</script> 
-*}]
 
 <script type="text/javascript">
   if(top)
@@ -55,18 +50,18 @@ function editThis( sID )
     oTransfer.submit();
 }
 
-
 </script>
+
 <div class="center">
 
-<form name="transfer" id="transfer" action="[{ $shop->selflink }]" method="post">
-    [{ $shop->hiddensid }]
-    <input type="hidden" name="oxid" value="[{ $oxid }]">
-    <input type="hidden" name="cl" value="">
-    <input type="hidden" name="updatelist" value="1">
-    <input type="hidden" name="language" value="[{ $actlang }]">
-    <input type="hidden" name="editlanguage" value="[{ $actlang }]">
-</form>
+    <form name="transfer" id="transfer" action="[{ $shop->selflink }]" method="post">
+        [{ $shop->hiddensid }]
+        <input type="hidden" name="oxid" value="[{ $oxid }]">
+        <input type="hidden" name="cl" value="">
+        <input type="hidden" name="updatelist" value="1">
+        <input type="hidden" name="language" value="[{ $actlang }]">
+        <input type="hidden" name="editlanguage" value="[{ $actlang }]">
+    </form>
 
     <h2>[{ oxmultilang ident="JXINVENTORY_STORELIST" }]
         <input class="edittext" style="position:relative; top:-2px;" type="submit" 
@@ -102,7 +97,6 @@ function editThis( sID )
     </div>
 
     <table cellspacing="0" cellpadding="0" border="0" [{*width="99%"*}]>
-        [{* <colgroup><col width="5%"><col width="70%"><col width="25%"></colgroup> *}]
         <tr>
             <td valign="top" class="listfilter first" align="right">
                 <div class="r1"><div class="b1">&nbsp;</div></div>
@@ -193,8 +187,5 @@ function editThis( sID )
         </tr>
 
     </table>
-
-    
-
 
 </div>

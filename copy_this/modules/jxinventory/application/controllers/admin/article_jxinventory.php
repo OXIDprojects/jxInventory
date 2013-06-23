@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  *    This file is part of the module jxInventory for OXID eShop Community Edition.
  *
  *    OXID eShop Community Edition is free software: you can redistribute it and/or modify
@@ -46,22 +46,6 @@ class Article_jxInventory extends oxAdminView
         $oSmarty->assign( "oViewConf", $this->_aViewData["oViewConf"]);
         $oSmarty->assign( "shop", $this->_aViewData["shop"]);
 
-        /* $this->sql_article = 'SELECT a.oxtitle, 
-	s.invstock, (SELECT COUNT(*) FROM invitems i WHERE s.invoxid=i.invartid) AS invamount, 
-	s.invsite, s.invstore, s.invrack, s.invlevel 
-FROM oxarticles a, invarticles s 
-WHERE 
-	s.invoxid = \'1964\'
-	AND a.oxid = s.invoxid';
-        
-        $this->sql_variants = 'SELECT (SELECT b.oxtitle FROM oxarticles b where b.oxid = \'531b537118f5f4d7a427cdb825440922\') AS oxtitle, a.oxvarselect, 
-	s.invstock, (SELECT COUNT(*) FROM invitems i WHERE s.invoxid=i.invartid) AS invamount, 
-	s.invsite, s.invstore, s.invrack, s.invlevel 
-FROM oxarticles a, invarticles s 
-WHERE 
-	a.oxparentid = \'531b537118f5f4d7a427cdb825440922\'
-	AND a.oxid = s.invoxid'; */
-        
         $this->_aViewData["edit"] = $oArticle = oxNew( "oxarticle");
 
         $soxId = oxConfig::getParameter( "oxid");
@@ -105,15 +89,6 @@ WHERE
                             . "AND a.oxid = s.jxartid ";
                 
             } else {
-                /*$sSql = "SELECT "
-                        . "(SELECT b.oxtitle FROM oxarticles b where b.oxid = '$soxId') AS oxtitle, "
-                        . "a.oxvarselect, s.invstock, (SELECT COUNT(*) FROM invitems i WHERE s.invoxid = i.invartid) AS invamount, "
-                        . "s.invsite, s.invstore, s.invrack, s.invlevel "
-                        . "FROM oxarticles a, invarticles s "
-                        . "WHERE "
-                            . "a.oxparentid = '$soxId' "
-                            . "AND a.oxshopid = '$sShopID' "
-                            . "AND a.oxid = s.invoxid ";*/
                 $sSql = "SELECT "
                         . "(SELECT b.oxtitle FROM oxarticles b where b.oxid = '$soxId') AS oxtitle, "
                         . "(IF(oxbprice=0,(SELECT b.oxbprice FROM oxarticles b where b.oxid = '$soxId'),oxbprice) * jxinvstock) AS invbuysum, "
@@ -125,20 +100,8 @@ WHERE
                         . "ORDER BY oxsort";
             }
             
-            
-            /*$oPriceList = oxNew("oxlist");
-            $oPriceList->init( 'oxbase', "oxprice2article" );
-            $sQ = "select * from oxprice2article where oxartid = '$soxId' and oxshopid = '$sShopID' and (oxamount > 0 or oxamountto > 0) order by oxamount ";
-            $oPriceList->selectstring( $sQ );
-
-            $this->_aViewData["amountprices"] = $oPriceList;*/
-
-            /*echo '<pre>SQL:<br>';
-            echo $sSql;
-            echo '</pre>';/**/
-            
             $aInventory = array();
-            //old -- $rs = oxDb::getDb(true)->Execute($sSql);
+
             $oDb = oxDb::getDb( oxDB::FETCH_MODE_ASSOC );
             $rs = $oDb->Execute($sSql);
             if (!empty($rs)){
@@ -148,10 +111,6 @@ WHERE
                 }
             }
 
-            /*echo '<hr><pre>aInventory:<br>';
-            echo print_r($aInventory);
-            echo '</pre>';*/
-            
             if (count($aInventory) == 0) {
                 $sSql = "SELECT oxtitle, 0 AS invbuysum, oxid, '' AS invoxid, oxartnum, '-' AS oxvarselect, oxstockflag, "
                     . "'' as invsite, '' AS invstore, '' as invrack, '' AS invlevel, 0 AS invstock "
@@ -193,16 +152,6 @@ WHERE
         
         $iRows = oxConfig::getParameter( "rownum" );
         for ($i = 1; $i <= $iRows; $i++) {
-            //$sNewId = $sNewId ? $sNewId : oxUtilsObject::getInstance()->generateUID();
-            /*echo $iRows.'<br>';
-            echo oxConfig::getParameter( "invstock_$i" )
-                    .' / '.oxConfig::getParameter( "invoxid_$i" )
-                    .' / '.oxUtilsObject::getInstance()->generateUID()
-                    .' / '.oxConfig::getParameter( "invsite_$i" )
-                    .' / '.oxConfig::getParameter( "invstore_$i" )
-                    .' / '.oxConfig::getParameter( "invrack_$i" )
-                    .' / '.oxConfig::getParameter( "invlevel_$i" )
-                    .'<br>';*/
             $sInvID = oxConfig::getParameter( "invoxid_$i" );
             if (!empty($sInvID)) {
                 // update the existing record
@@ -217,7 +166,6 @@ WHERE
                             . "jxartid = ".$oDb->quote(oxConfig::getParameter( "oxid_$i" ))." ";
             } else {
                 // insert a new record
-                //$sNewInvID = oxUtilsObject::getInstance()->generateUID();
                 $sSql = "INSERT INTO jxinvarticles "
                         . "(jxartid, jxinvsite, jxinvstore, jxinvrack, jxinvlevel, jxinvstock) "
                         . "VALUES ("
@@ -229,7 +177,6 @@ WHERE
                             . $oDb->quote(oxConfig::getParameter( "invstock_$i" )) 
                             . ") ";
             }
-            //echo '<pre>'.$sSql.'</pre>';
             $oDb->execute($sSql);
         }
 

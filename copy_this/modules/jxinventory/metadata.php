@@ -12,7 +12,7 @@ $aModule = array(
     'id'           => 'jxinventory',
     'title'        => 'jxInventory - Real Inventory Administration',
     'description'  => array(
-                        'de'=>'Verwaltung des tats&auml;chlichen Lagerbestand.',
+                        'de'=>'Verwaltung des tats&auml;chlichen Lagerbestands.',
                         'en'=>'Administration of the real inventory.'
                         ),
     'thumbnail'    => 'jxinventory.png',

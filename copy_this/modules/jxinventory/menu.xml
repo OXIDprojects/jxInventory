@@ -5,7 +5,7 @@
             <SUBMENU id="mxarticles" cl="article" list="article_list">
                 <TAB id="tbclarticle_jxinventory" cl="article_jxinventory" />
             </SUBMENU>
-            <SUBMENU id="jxinventory_displaylist" cl="jxinventory_list">
+            <SUBMENU id="jxinventory_displaylist" cl="jxinventory_list" rights="malladmin">
             </SUBMENU>
         </MAINMENU>
     </OXMENU>

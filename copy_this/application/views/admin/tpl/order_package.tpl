@@ -50,15 +50,15 @@ function printWindow()
     <td class="packitem" valign="top">
     [{ oxmultilang ident="ORDER_PACKAGE_ORDERNR1" }][{ $order->oxorder__oxordernr->value}] - [{ oxmultilang ident="ORDER_PACKAGE_ORDERNR2" }] [{ $order->oxorder__oxorderdate->value|oxformdate:"datetime":true }]<br><br>
             <table cellspacing="2" cellpadding="0" border="0" width="100%">
-            [{* jxInventory Extension - Begin *}]
+            [{* ---- jxInventory Extension - Begin ---- *}]
             [{assign var=jxLineStyle value="font-weight:bold;background-color:#efefef;"}]
-            [{* jxInventory Extension - End *}]
+            [{* ---- jxInventory Extension - End ---- *}]
             [{foreach from=$order->getOrderArticles(true) item=article}]
                     <tr>
                             <td class="packitem" valign="top"><div style="[{$jxLineStyle}]">[{ $article->oxorderarticles__oxamount->value }]</div></td>
                             <td class="packitem" valign="top"><div style="[{$jxLineStyle}]">[{ $article->oxorderarticles__oxartnum->value }]</div></td>
                             <td class="packitem" valign="top"><div style="[{$jxLineStyle}]">[{ $article->oxorderarticles__oxtitle->value }]</div>
-                                [{* jxInventory Extension - Begin *}]
+                                [{* ---- jxInventory Extension - Begin ---- *}]
                                 [{assign var=jxInv value=$article->jxGetInventoryLocation()}]
                                 [{* $article->oxorderarticles__oxid->value *}] 
                                 [{if $jxInv }]
@@ -66,7 +66,7 @@ function printWindow()
                                 [{else}]
                                 <span style="color:#aa0000; font-style:italic">[{ oxmultilang ident="JXINVENTORY_NOTPRESENT" }]</san>
                                 [{/if}]
-                                [{* jxInventory Extension - End *}]
+                                [{* ---- jxInventory Extension - End ---- *}]
 
                             [{foreach key=sVar from=$article->getPersParams() item=aParam name=persparams}]
                             	[{if $aParam }]

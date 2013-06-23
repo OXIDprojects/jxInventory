@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  *    This file is part of the module jxInventory for OXID eShop Community Edition.
  *
  *    OXID eShop Community Edition is free software: you can redistribute it and/or modify
@@ -28,8 +28,6 @@ class Install_jxInventory
 
         $myConfig = oxRegistry::get("oxConfig");
         $bConfig_DropOnDeactivate = $myConfig->getConfigParam("bJxInventoryDropOnDeactivate");
-        // zum vorherigen bereinigen springe ich einfach in die Deaktivierungs-Methode 
-        //Install_jxInventory::onDeactivate(); 
         $oDb = oxDb::getDb(); 
 
         $isUtf = oxRegistry::getConfig()->isUtf(); 
@@ -48,14 +46,7 @@ class Install_jxInventory
             . "INDEX `invstore` (`jxinvstore`) "
             . ")"
             . "ENGINE=MyISAM " . ($isUtf ? 'DEFAULT CHARSET=utf8' : ''); 
-        
-            //echo $sSql.'<br>';
-            /*    "`OXID` char(32) character set latin1 collate latin1_general_ci NOT NULL, 
-            `bspname` varchar(255) ".($isUtf ? 'collate utf8_general_ci' : '')." not null default '', 
-            `OXTIMESTAMP` timestamp not null default current_timestamp on update current_timestamp, 
-            primary key (`OXID`), 
-            ) engine=MyISAM ".($isUtf ? 'DEFAULT CHARSET=utf8' : ''); */
-        
+                
         $oRs = $oDb->execute($sSql); 
         
         $sSql = "CREATE TABLE IF NOT EXISTS `jxinvshipping` ( "
@@ -66,13 +57,6 @@ class Install_jxInventory
             . "PRIMARY KEY (`jxinvorderid`) "
             . ")"
             . "ENGINE=MyISAM " . ($isUtf ? 'DEFAULT CHARSET=utf8' : ''); 
-        
-            //echo $sSql.'<br>';
-            /*    "`OXID` char(32) character set latin1 collate latin1_general_ci NOT NULL, 
-            `bspname` varchar(255) ".($isUtf ? 'collate utf8_general_ci' : '')." not null default '', 
-            `OXTIMESTAMP` timestamp not null default current_timestamp on update current_timestamp, 
-            primary key (`OXID`), 
-            ) engine=MyISAM ".($isUtf ? 'DEFAULT CHARSET=utf8' : ''); */
         
         $oRs = $oDb->execute($sSql); 
         

@@ -1,6 +1,6 @@
 <?php
 /**
- *    This file is part of OXID eShop Community Edition.
+ *    This file is part of the module jxInventory for OXID eShop Community Edition.
  *
  *    OXID eShop Community Edition is free software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as published by
@@ -21,21 +21,12 @@
  * 
  */
 
-/**
- * user list "view" class.
- * @package admin
- */
 class jxinventory_list extends Article_List
 {
     protected $_sThisTemplateList = "jxinventory_list.tpl";
     protected $_sThisTemplateSummary = "jxinventory_summary.tpl";
 
-    /**
-     * Executes parent method parent::render(), passes data to Smarty engine
-     * and returns name of template file "list_review.tpl".
-     *
-     * @return string
-     */
+
     public function render()
     {
         parent::render();
@@ -223,12 +214,5 @@ class jxinventory_list extends Article_List
     
 }
 
-/*class Order_Inventory extends oxAdminDetails
-{
-    public function sendorder() {
-        $result = parent::sendorder();
-        echo '*** It works ***';
-    }
-}*/
 
 ?>

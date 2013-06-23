@@ -43,7 +43,6 @@ function editThis( sID )
 
 
 [{*debug*}]
-[{* ArtID = [{ $edit->oxarticles__oxid->value }] *}]
     <h3>[{ oxmultilang ident="JXINVENTORY_SUMMARY" }]</h3>
     <form name="invedit" id="invedit" action="[{ $shop->selflink }]" method="post">
     [{ $shop->hiddensid }]

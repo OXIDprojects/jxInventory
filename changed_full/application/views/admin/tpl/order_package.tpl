@@ -12,11 +12,11 @@ function printWindow()
 <style media="print"> #noprint{ display:none; }</style>
 <br>
 <div id="noprint"><br>
-<a class="listitem" href="javascript:printWindow();"><b>[{ oxmultilang ident="ORDER_PACKAGE_SHOWPACKLIST" }]</b></a><br>
-<br><br></div>
+<a class="listitem" href="javascript:printWindow();"><b>[{ oxmultilang ident="ORDER_PACKAGE_SHOWPACKLIST" }]</b></a>
+</div>
 
 <span class="listitem">
-<b>[{ oxmultilang ident="ORDER_PACKAGE_PACKLIST" }]</b><br><br>
+<h2>[{ oxmultilang ident="ORDER_PACKAGE_PACKLIST" }]</h2>
 </span>
 
 [{foreach from=$resultset item=order}]
@@ -50,18 +50,23 @@ function printWindow()
     <td class="packitem" valign="top">
     [{ oxmultilang ident="ORDER_PACKAGE_ORDERNR1" }][{ $order->oxorder__oxordernr->value}] - [{ oxmultilang ident="ORDER_PACKAGE_ORDERNR2" }] [{ $order->oxorder__oxorderdate->value|oxformdate:"datetime":true }]<br><br>
             <table cellspacing="2" cellpadding="0" border="0" width="100%">
+            [{* ---- jxInventory Extension - Begin ---- *}]
+            [{assign var=jxLineStyle value="font-weight:bold;background-color:#efefef;"}]
+            [{* ---- jxInventory Extension - End ---- *}]
             [{foreach from=$order->getOrderArticles(true) item=article}]
                     <tr>
-                            <td class="packitem" valign="top"><div style="font-weight:bold;background-color:#efefef;">[{ $article->oxorderarticles__oxamount->value }]</div></td>
-                            <td class="packitem" valign="top"><div style="font-weight:bold;background-color:#efefef;">[{ $article->oxorderarticles__oxartnum->value }]</div></td>
-                            <td class="packitem" valign="top"><div style="font-weight:bold;background-color:#efefef;">[{ $article->oxorderarticles__oxtitle->value }]</div>
-							[{assign var=jxInv value=$article->jxGetInventoryLocation()}]
-							[{* $article->oxorderarticles__oxid->value *}] 
-							[{if $jxInv }]
-							<span style="color:#00aa00;">[{ $jxInv.Site }] - [{ $jxInv.Store }] - [{ $jxInv.Rack }] - [{ $jxInv.Level }]</span>
-							[{else}]
-							<span style="color:#aa0000;">kein Lagerbestand vorhanden!</san>
-							[{/if}]
+                            <td class="packitem" valign="top"><div style="[{$jxLineStyle}]">[{ $article->oxorderarticles__oxamount->value }]</div></td>
+                            <td class="packitem" valign="top"><div style="[{$jxLineStyle}]">[{ $article->oxorderarticles__oxartnum->value }]</div></td>
+                            <td class="packitem" valign="top"><div style="[{$jxLineStyle}]">[{ $article->oxorderarticles__oxtitle->value }]</div>
+                                [{* ---- jxInventory Extension - Begin ---- *}]
+                                [{assign var=jxInv value=$article->jxGetInventoryLocation()}]
+                                [{* $article->oxorderarticles__oxid->value *}] 
+                                [{if $jxInv }]
+                                <span style="color:#00aa00;">[{ $jxInv.Site }] - [{ $jxInv.Store }] - [{ $jxInv.Rack }] - [{ $jxInv.Level }]</span>
+                                [{else}]
+                                <span style="color:#aa0000; font-style:italic">[{ oxmultilang ident="JXINVENTORY_NOTPRESENT" }]</san>
+                                [{/if}]
+                                [{* ---- jxInventory Extension - End ---- *}]
 
                             [{foreach key=sVar from=$article->getPersParams() item=aParam name=persparams}]
                             	[{if $aParam }]
@@ -76,7 +81,7 @@ function printWindow()
                             [{/foreach}]
 
                             </td>
-                            <td class="packitem" valign="top"><div style="font-weight:bold;background-color:#efefef;">[{ $article->oxorderarticles__oxselvariant->value}]&nbsp;</div></td>
+                            <td class="packitem" valign="top"><div style="[{$jxLineStyle}]">[{ $article->oxorderarticles__oxselvariant->value}]&nbsp;</div></td>
                             <td class="packitem" valign="top"><img src="[{$oViewConf->getImageUrl()}]/rectangle.gif" alt="" width="20" height="20" border="0"></td>
                     </tr>
                     [{assign var=_wrap value=$article->getWrapping()}]

@@ -23,6 +23,8 @@ $aLang = array(
     'JXINVENTORY_SELLSUM'      => 'Total Purchase Value',
     'JXINVENTORY_NOTPRESENT'   => 'no inventory available!',
 
+    'SHOP_MODULE_GROUP_JXINVENTORY_ACTIVATESETTINGS'     => 'Module Activation',
+    'SHOP_MODULE_bJxInventoryCopyOnActivate'             => 'Copy Shop stock to jxInventory stock',
     'SHOP_MODULE_GROUP_JXINVENTORY_DEACTIVATESETTINGS'   => 'Module Deactivation',
     'SHOP_MODULE_bJxInventoryDropOnDeactivate'           => 'Delete inventory data on deactivation',
     

@@ -60,6 +60,15 @@ class Install_jxInventory
         
         $oRs = $oDb->execute($sSql); 
         
+        $bConfig_CopyOnActivate = $myConfig->getConfigParam("bJxInventoryCopyOnActivate");
+        if ($bConfig_CopyOnActivate) {
+            $sSql = "REPLACE INTO jxinvarticles "
+                    . "(jxartid, jxinvstock) "
+                    . "SELECT oxid, oxstock "
+                        . "FROM oxarticles ";
+            $oRs = $oDb->execute($sSql); 
+        }
+        
         return true; 
     } 
 

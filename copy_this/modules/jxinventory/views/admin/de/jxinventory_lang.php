@@ -23,6 +23,8 @@ $aLang = array(
     'JXINVENTORY_SELLSUM'      => 'Gesamtwert VK',
     'JXINVENTORY_NOTPRESENT'   => 'kein Lagerbestand vorhanden!',
 
+    'SHOP_MODULE_GROUP_JXINVENTORY_ACTIVATESETTINGS'     => 'Modul-Aktivierung',
+    'SHOP_MODULE_bJxInventoryCopyOnActivate'             => 'Shop-Lagerbestand nach jxInventory-Lager kopieren',
     'SHOP_MODULE_GROUP_JXINVENTORY_DEACTIVATESETTINGS'   => 'Modul-Deaktivierung',
     'SHOP_MODULE_bJxInventoryDropOnDeactivate'           => 'Lagerbestand-Daten bei Deaktivung l&ouml;schen',
     

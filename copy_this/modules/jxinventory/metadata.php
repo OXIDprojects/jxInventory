@@ -42,6 +42,12 @@ $aModule = array(
                         ),
     'settings'     => array(
                         array(
+                            'group' => 'JXINVENTORY_ACTIVATESETTINGS', 
+                            'name'  => 'bJxInventoryCopyOnActivate', 
+                            'type'  => 'bool', 
+                            'value' => 'false'
+                            ),
+                        array(
                             'group' => 'JXINVENTORY_DEACTIVATESETTINGS', 
                             'name'  => 'bJxInventoryDropOnDeactivate', 
                             'type'  => 'bool', 

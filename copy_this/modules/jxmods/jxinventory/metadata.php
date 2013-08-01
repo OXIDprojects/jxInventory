@@ -16,25 +16,25 @@ $aModule = array(
                         'en'=>'Administration of the real inventory.'
                         ),
     'thumbnail'    => 'jxinventory.png',
-    'version'      => '0.2',
+    'version'      => '0.2.1',
     'author'       => 'Joachim Barthel',
     'url'          => 'https://github.com/job963/jxInventory',
-    'email'        => 'jbarthel@qualifire.de',
+    'email'        => 'jobarthel@gmail.com',
     'extend'       => array(
-        'oxorderarticle' => 'jxinventory/models/jxinventory_packlist',
-        'order_overview' => 'jxinventory/models/jxinventory_orderoverview',
-        'order_main' => 'jxinventory/models/jxinventory_ordermain'
+        'oxorderarticle' => 'jxmods/jxinventory/models/jxinventory_packlist',
+        'order_overview' => 'jxmods/jxinventory/models/jxinventory_orderoverview',
+        'order_main'     => 'jxmods/jxinventory/models/jxinventory_ordermain'
                         ),
     'files'        => array(
-        'install_jxinventory'  => 'jxinventory/application/controllers/admin/install_jxinventory.php',
-        'article_jxinventory'  => 'jxinventory/application/controllers/admin/article_jxinventory.php',
-        'jxinventory_list'     => 'jxinventory/application/controllers/admin/jxinventory_list.php',
-        'jxinventory_sendorder'     => 'jxinventory/application/controllers/admin/jxinventory_sendorder.php'
+        'install_jxinventory'   => 'jxmods/jxinventory/application/controllers/admin/install_jxinventory.php',
+        'article_jxinventory'   => 'jxmods/jxinventory/application/controllers/admin/article_jxinventory.php',
+        'jxinventory_list'      => 'jxmods/jxinventory/application/controllers/admin/jxinventory_list.php',
+        'jxinventory_sendorder' => 'jxmods/jxinventory/application/controllers/admin/jxinventory_sendorder.php'
                         ),
     'templates'    => array(
-        'article_jxinventory.tpl' => 'jxinventory/views/admin/tpl/article_jxinventory.tpl',
-        'jxinventory_list.tpl'    => 'jxinventory/views/admin/tpl/jxinventory_list.tpl',
-        'jxinventory_summary.tpl' => 'jxinventory/views/admin/tpl/jxinventory_summary.tpl'
+        'article_jxinventory.tpl' => 'jxmods/jxinventory/views/admin/tpl/article_jxinventory.tpl',
+        'jxinventory_list.tpl'    => 'jxmods/jxinventory/views/admin/tpl/jxinventory_list.tpl',
+        'jxinventory_summary.tpl' => 'jxmods/jxinventory/views/admin/tpl/jxinventory_summary.tpl'
                         ),
     'events'       => array(
         'onActivate'   => 'install_jxinventory::onActivate', 

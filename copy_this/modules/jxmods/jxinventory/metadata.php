@@ -16,7 +16,7 @@ $aModule = array(
                         'en'=>'Administration of the real inventory.'
                         ),
     'thumbnail'    => 'jxinventory.png',
-    'version'      => '0.2.1',
+    'version'      => '0.2.2',
     'author'       => 'Joachim Barthel',
     'url'          => 'https://github.com/job963/jxInventory',
     'email'        => 'jobarthel@gmail.com',

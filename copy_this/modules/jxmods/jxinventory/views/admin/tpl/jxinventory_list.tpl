@@ -104,6 +104,9 @@ function editThis( sID )
             <td class="listfilter"><div class="r1"><div class="b1">
                 <input class="listedit" type="text" size="12" maxlength="128" name="jxwhere[oxvarselect]" value="[{ $aWhere.oxvarselect }]">
                 </div></div></td>
+            <td class="listfilter"><div class="r1"><div class="b1">
+                <input class="listedit" type="text" size="10" maxlength="128" name="jxwhere[oxvendor]" value="[{ $aWhere.oxvendor }]">
+                </div></div></td>
             <td class="listfilter"><div class="r1"><div class="b1"></div></div></td>
             <td class="listfilter"><div class="r1"><div class="b1"></div></div></td>
             <td class="listfilter"><div class="r1"><div class="b1"></div></div></td>
@@ -140,6 +143,12 @@ function editThis( sID )
                     [{ oxmultilang ident="tbclarticle_variant" }]
                 </a>
                 [{ if $sortcol == 'oxvarselect' }]<span style="font-size:1.5em;">&nbsp;&nbsp;&nbsp;&blacktriangle;</span>[{/if}]
+            </td>
+            <td class="listheader">
+                <a href="javascript:document.forms.showinv.sortcol.value='oxvendor';document.forms.showinv.submit();" class="listheader">
+                    [{ oxmultilang ident="GENERAL_VENDOR" }]
+                </a>
+                [{ if $sortcol == 'oxvendor' }]<span style="font-size:1.5em;">&nbsp;&nbsp;&nbsp;&blacktriangle;</span>[{/if}]
             </td>
             <td class="listheader" style="text-align:right; padding-right:20px;">
                 <table cellspacing="0" cellpadding="0" width="100%" border="0"><tr>
@@ -185,6 +194,7 @@ function editThis( sID )
                 </td>
                 <td class="[{ $listclass }]"><a href="Javascript:editThis('[{$Inventory.oxid}]');">[{ $Inventory.oxtitle }]</a></td>
                 <td class="[{ $listclass }]"><a href="Javascript:editThis('[{$Inventory.oxid}]');">[{ $Inventory.oxvarselect }]</a></td>
+                <td class="[{ $listclass }]">[{ $Inventory.oxvendor }]</td>
                 <td class="[{ $listclass }]" style="text-align:right; padding-right:10px;">
                     <table cellspacing="0" cellpadding="0" width="100%" border="0"><tr>
                         <td width="35%"><span style="[{if $Inventory.jxinvstock < 0}]color:#ff0000;[{/if}]">[{ $Inventory.jxinvstock }]&nbsp;</span></td>

@@ -140,6 +140,8 @@ class jxinventory_list extends Article_List
             $sWhere .= "AND s.jxinvsite LIKE '%".$aWhere['invsite']."%' ";
         if ($aWhere['invstore'] != '')
             $sWhere .= "AND s.jxinvstore LIKE '%".$aWhere['invstore']."%' ";
+        if ($aWhere['oxvendor'] != '')
+            $sWhere .= "AND IF(a.oxparentid = '', (SELECT v.oxtitle FROM oxvendor v WHERE a.oxvendorid = v.oxid), (SELECT v.oxtitle FROM oxarticles a1, oxvendor v WHERE a1.oxid = a.oxparentid AND a1.oxvendorid=v.oxid)) LIKE '%".$aWhere['oxvendor']."%' ";
         
         return $sWhere;
     }
@@ -158,6 +160,8 @@ class jxinventory_list extends Article_List
                 $sSort = "s.jxinvsite, s.jxinvstore, s.jxinvrack, s.jxinvlevel";
             if ($sortCol == 'invstore')
                 $sSort = "s.jxinvstore, s.jxinvrack, s.jxinvlevel";
+            if ($sortCol == 'oxvendor')
+                $sSort = "oxvendor";
             }
         else {
             if ($sortCol == 'manutitle')
@@ -180,7 +184,9 @@ class jxinventory_list extends Article_List
                     . "(IF(a.oxbprice=0,(SELECT b.oxbprice FROM oxarticles b where b.oxid = a.oxparentid),a.oxbprice) * jxinvstock) AS invbuysum, "
                     . "(a.oxprice * jxinvstock) AS invsellsum, "
                     . "IF(oxbprice=0,(SELECT b.oxbprice FROM oxarticles b where b.oxid = a.oxparentid),oxbprice) AS oxbprice, "
-                    . "a.oxactive, a.oxartnum, IF(a.oxvarselect = '', '-', a.oxvarselect) AS oxvarselect, a.oxstock, a.oxstockflag, s.jxinvstock, s.jxinvsite, s.jxinvstore, s.jxinvrack, s.jxinvlevel "
+                    . "a.oxactive, a.oxartnum, IF(a.oxvarselect = '', '-', a.oxvarselect) AS oxvarselect, a.oxstock, a.oxstockflag, "
+                    . "IF(a.oxparentid = '', (SELECT v.oxtitle FROM oxvendor v WHERE a.oxvendorid = v.oxid), (SELECT v.oxtitle FROM oxarticles a1, oxvendor v WHERE a1.oxid = a.oxparentid AND a1.oxvendorid=v.oxid)) AS oxvendor, "
+                    . "s.jxinvstock, s.jxinvsite, s.jxinvstore, s.jxinvrack, s.jxinvlevel "
                 . "FROM oxarticles a, jxinvarticles s "
                 . "WHERE a.oxid = s.jxartid "
                     . "AND oxvarcount = 0 "

@@ -23,7 +23,8 @@ $aModule = array(
     'extend'       => array(
         'oxorderarticle' => 'jxmods/jxinventory/models/jxinventory_packlist',
         'order_overview' => 'jxmods/jxinventory/models/jxinventory_orderoverview',
-        'order_main'     => 'jxmods/jxinventory/models/jxinventory_ordermain'
+        'order_main'     => 'jxmods/jxinventory/models/jxinventory_ordermain',
+        'order_package'  => 'jxmods/jxinventory/extend/order_package_custom'
                         ),
     'files'        => array(
         'install_jxinventory'   => 'jxmods/jxinventory/application/controllers/admin/install_jxinventory.php',
@@ -34,7 +35,8 @@ $aModule = array(
     'templates'    => array(
         'article_jxinventory.tpl' => 'jxmods/jxinventory/views/admin/tpl/article_jxinventory.tpl',
         'jxinventory_list.tpl'    => 'jxmods/jxinventory/views/admin/tpl/jxinventory_list.tpl',
-        'jxinventory_summary.tpl' => 'jxmods/jxinventory/views/admin/tpl/jxinventory_summary.tpl'
+        'jxinventory_summary.tpl' => 'jxmods/jxinventory/views/admin/tpl/jxinventory_summary.tpl',
+        'order_package_custom.tpl'=> 'jxmods/jxinventory/views/admin/tpl/order_package_custom.tpl'
                         ),
     'events'       => array(
         'onActivate'   => 'install_jxinventory::onActivate', 

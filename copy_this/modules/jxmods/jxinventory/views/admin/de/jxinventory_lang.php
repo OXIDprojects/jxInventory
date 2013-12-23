@@ -22,6 +22,7 @@ $aLang = array(
     'JXINVENTORY_BUYSUM'       => 'Gesamtwert EK',
     'JXINVENTORY_SELLSUM'      => 'Gesamtwert VK',
     'JXINVENTORY_NOTPRESENT'   => 'kein Lagerbestand vorhanden!',
+    'JXINVENTORY_DOWNLOAD'     => 'Download',    
 
     'SHOP_MODULE_GROUP_JXINVENTORY_ACTIVATESETTINGS'     => 'Modul-Aktivierung',
     'SHOP_MODULE_bJxInventoryCopyOnActivate'             => 'Shop-Lagerbestand nach jxInventory-Lager kopieren',

@@ -66,7 +66,7 @@ function editThis( sID )
     <h2>[{ oxmultilang ident="JXINVENTORY_STORELIST" }]
         <input class="edittext" style="position:relative; top:-2px;" type="submit" 
             onClick="javascript:document.forms['showinv'].elements['fnc'].value = 'downloadResult';" 
-            value=" [{ oxmultilang ident="JXSALES_DOWNLOAD" }] " [{ $readonly }]>
+            value=" [{ oxmultilang ident="JXINVENTORY_DOWNLOAD" }] " [{ $readonly }]>
     </h2>
           
     [{assign var="totalbuysum" value="0.0"}]

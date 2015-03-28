@@ -2,12 +2,12 @@
 /*
  *    This file is part of the module jxInventory for OXID eShop Community Edition.
  *
- *    OXID eShop Community Edition is free software: you can redistribute it and/or modify
+ *    The module jxInventory for OXID eShop Community Edition is free software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as published by
  *    the Free Software Foundation, either version 3 of the License, or
  *    (at your option) any later version.
  *
- *    OXID eShop Community Edition is distributed in the hope that it will be useful,
+ *    The module jxInventory for OXID eShop Community Edition is distributed in the hope that it will be useful,
  *    but WITHOUT ANY WARRANTY; without even the implied warranty of
  *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *    GNU General Public License for more details.
@@ -17,7 +17,8 @@
  *
  * @link      https://github.com/job963/jxInventory
  * @license   http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
- * @copyright (C) Joachim Barthel 2012-2013
+ * @copyright (C) 2012-2015 Joachim Barthel
+ * @author    Joachim Barthel <jobarthel@gmail.com>
  * 
  */
 
@@ -42,13 +43,10 @@ class Article_jxInventory extends oxAdminView
         $myConfig = $this->getConfig();
 
         parent::render();
-        $oSmarty = oxUtilsView::getInstance()->getSmarty();
-        $oSmarty->assign( "oViewConf", $this->_aViewData["oViewConf"]);
-        $oSmarty->assign( "shop", $this->_aViewData["shop"]);
 
         $this->_aViewData["edit"] = $oArticle = oxNew( "oxarticle");
 
-        $soxId = oxConfig::getParameter( "oxid");
+        $soxId = $this->getConfig()->getRequestParameter( "oxid");
         if ( $soxId != "-1" && isset( $soxId)) {
 
             // load object
@@ -120,7 +118,7 @@ class Article_jxInventory extends oxAdminView
                 $rs = $oDb->Execute($sSql);
                 array_push($aInventory, $rs->fields);
             }
-            $oSmarty->assign("aInventory",$aInventory);
+            $this->_aViewData["aInventory"] = $aInventory;
          
         }
 
@@ -136,12 +134,12 @@ class Article_jxInventory extends oxAdminView
     public function saveinventory($sOXID = null, $aParams = null)
     {
         if ( !isset( $sOXID ) && !isset( $aParams ) ) {
-            $sOXID   = oxConfig::getParameter( "voxid" );
-            $aParams = oxConfig::getParameter( "editval" );
+            $sOXID   = $this->getConfig()->getRequestParameter( "voxid" );
+            $aParams = $this->getConfig()->getRequestParameter( "editval" );
         }
         
         // varianthandling
-        $soxparentId = oxConfig::getParameter( "oxid" );
+        $soxparentId = $this->getConfig()->getRequestParameter( "oxid" );
         if ( isset( $soxparentId) && $soxparentId && $soxparentId != "-1" ) {
             $aParams['oxarticles__oxparentid'] = $soxparentId;
         } else {
@@ -150,31 +148,31 @@ class Article_jxInventory extends oxAdminView
         
         $oDb = oxDb::getDb();
         
-        $iRows = oxConfig::getParameter( "rownum" );
+        $iRows = $this->getConfig()->getRequestParameter( "rownum" );
         for ($i = 1; $i <= $iRows; $i++) {
-            $sInvID = oxConfig::getParameter( "invoxid_$i" );
+            $sInvID = $this->getConfig()->getRequestParameter( "invoxid_$i" );
             if (!empty($sInvID)) {
                 // update the existing record
                 $sSql = "UPDATE jxinvarticles "
                         . "SET "
-                            . "jxinvsite = ".$oDb->quote(oxConfig::getParameter( "invsite_$i" )).", "
-                            . "jxinvstore = ".$oDb->quote(oxConfig::getParameter( "invstore_$i" )).", "
-                            . "jxinvrack = ".$oDb->quote(oxConfig::getParameter( "invrack_$i" )).", "
-                            . "jxinvlevel = ".$oDb->quote(oxConfig::getParameter( "invlevel_$i" )).", "
-                            . "jxinvstock = ".$oDb->quote(oxConfig::getParameter( "invstock_$i" ))." "
+                            . "jxinvsite = ".$oDb->quote($this->getConfig()->getRequestParameter( "invsite_$i" )).", "
+                            . "jxinvstore = ".$oDb->quote($this->getConfig()->getRequestParameter( "invstore_$i" )).", "
+                            . "jxinvrack = ".$oDb->quote($this->getConfig()->getRequestParameter( "invrack_$i" )).", "
+                            . "jxinvlevel = ".$oDb->quote($this->getConfig()->getRequestParameter( "invlevel_$i" )).", "
+                            . "jxinvstock = ".$oDb->quote($this->getConfig()->getRequestParameter( "invstock_$i" ))." "
                         . "WHERE "
-                            . "jxartid = ".$oDb->quote(oxConfig::getParameter( "oxid_$i" ))." ";
+                            . "jxartid = ".$oDb->quote($this->getConfig()->getRequestParameter( "oxid_$i" ))." ";
             } else {
                 // insert a new record
                 $sSql = "INSERT INTO jxinvarticles "
                         . "(jxartid, jxinvsite, jxinvstore, jxinvrack, jxinvlevel, jxinvstock) "
                         . "VALUES ("
-                            . $oDb->quote(oxConfig::getParameter( "oxid_$i" )) . ", "
-                            . $oDb->quote(oxConfig::getParameter( "invsite_$i" )) . ", "
-                            . $oDb->quote(oxConfig::getParameter( "invstore_$i" )) . ", "
-                            . $oDb->quote(oxConfig::getParameter( "invrack_$i" )) . ", "
-                            . $oDb->quote(oxConfig::getParameter( "invlevel_$i" )) . ", "
-                            . $oDb->quote(oxConfig::getParameter( "invstock_$i" )) 
+                            . $oDb->quote($this->getConfig()->getRequestParameter( "oxid_$i" )) . ", "
+                            . $oDb->quote($this->getConfig()->getRequestParameter( "invsite_$i" )) . ", "
+                            . $oDb->quote($this->getConfig()->getRequestParameter( "invstore_$i" )) . ", "
+                            . $oDb->quote($this->getConfig()->getRequestParameter( "invrack_$i" )) . ", "
+                            . $oDb->quote($this->getConfig()->getRequestParameter( "invlevel_$i" )) . ", "
+                            . $oDb->quote($this->getConfig()->getRequestParameter( "invstock_$i" )) 
                             . ") ";
             }
             $oDb->execute($sSql);

@@ -1,6 +1,5 @@
 [{include file="headitem.tpl" title="GENERAL_ADMIN_TITLE"|oxmultilangassign}]
 
-
 <script type="text/javascript">
 <!--
 function loadLang(obj)
@@ -27,7 +26,7 @@ function editThis( sID )
 //-->
 </script>
 
-[{ if $readonly }]
+[{if $readonly }]
     [{assign var="readonly" value="readonly disabled"}]
 [{else}]
     [{assign var="readonly" value=""}]

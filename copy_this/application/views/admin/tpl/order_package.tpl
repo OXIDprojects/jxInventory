@@ -1,4 +1,5 @@
 [{include file="headitem.tpl" title="ORDER_PACKAGE_TITLE"|oxmultilangassign box=" "}]
+
 <script type="text/javascript">
 <!--
 function printWindow()
@@ -9,6 +10,7 @@ function printWindow()
 }
 //  End -->
 </script>
+
 <style media="print"> #noprint{ display:none; }</style>
 <br>
 <div id="noprint"><br>
@@ -48,65 +50,65 @@ function printWindow()
         [{ oxmultilang ident="ORDER_PACKAGE_FAX" }]: [{ if $order->oxorder__oxdelfax->value }][{ $order->oxorder__oxdelfax->value }][{else}][{ $order->oxorder__oxbillfax->value }][{/if}]<br>
     </td>
     <td class="packitem" valign="top">
-    [{ oxmultilang ident="ORDER_PACKAGE_ORDERNR1" }][{ $order->oxorder__oxordernr->value}] - [{ oxmultilang ident="ORDER_PACKAGE_ORDERNR2" }] [{ $order->oxorder__oxorderdate->value|oxformdate:"datetime":true }]<br><br>
-            <table cellspacing="2" cellpadding="0" border="0" width="100%">
-            [{* ---- jxInventory Extension - Begin ---- *}]
-            [{assign var=jxLineStyle value="font-weight:bold;background-color:#efefef;"}]
-            [{* ---- jxInventory Extension - End ---- *}]
-            [{foreach from=$order->getOrderArticles(true) item=article}]
-                    <tr>
-                            <td class="packitem" valign="top"><div style="[{$jxLineStyle}]">[{ $article->oxorderarticles__oxamount->value }]</div></td>
-                            <td class="packitem" valign="top"><div style="[{$jxLineStyle}]">[{ $article->oxorderarticles__oxartnum->value }]</div></td>
-                            <td class="packitem" valign="top"><div style="[{$jxLineStyle}]">[{ $article->oxorderarticles__oxtitle->value }]</div>
-                                [{* ---- jxInventory Extension - Begin ---- *}]
-                                [{assign var=jxInv value=$article->jxGetInventoryLocation()}]
-                                [{* $article->oxorderarticles__oxid->value *}] 
-                                [{if $jxInv }]
-                                <span style="color:#00aa00;">[{ $jxInv.Site }] - [{ $jxInv.Store }] - [{ $jxInv.Rack }] - [{ $jxInv.Level }]</span>
-                                [{else}]
-                                <span style="color:#aa0000; font-style:italic">[{ oxmultilang ident="JXINVENTORY_NOTPRESENT" }]</san>
-                                [{/if}]
-                                [{* ---- jxInventory Extension - End ---- *}]
-
-                            [{foreach key=sVar from=$article->getPersParams() item=aParam name=persparams}]
-                            	[{if $aParam }]
-                                    <br />
-                                    [{if $smarty.foreach.persparams.first && $smarty.foreach.persparams.last}]
-                                        [{ oxmultilang ident="ORDER_PACKAGE_DETAILS" }] 
-                                    [{else}]
-                                        [{$sVar}] : 
-                                    [{/if}]
-                                    [{$aParam}]
-                                [{/if }]
-                            [{/foreach}]
-
-                            </td>
-                            <td class="packitem" valign="top"><div style="[{$jxLineStyle}]">[{ $article->oxorderarticles__oxselvariant->value}]&nbsp;</div></td>
-                            <td class="packitem" valign="top"><img src="[{$oViewConf->getImageUrl()}]/rectangle.gif" alt="" width="20" height="20" border="0"></td>
-                    </tr>
-                    [{assign var=_wrap value=$article->getWrapping()}]
-                    [{if $_wrap }]
-                    <tr>
-                            <td class="listitem" valign="top"></td>
-                            <td class="listitem" valign="top"></td>
-                            <td class="listitem" valign="top">[{ $_wrap->oxwrapping__oxname->value }]</td>
-                            <td class="listitem" valign="top"></td>
-                            <td class="listitem" valign="middle"></td>
-                    </tr>
-                    [{/if}]
-            [{/foreach}]
-
-            [{assign var=_card value=$order->getGiftCard()}]
-            [{if $_card}]
+        [{ oxmultilang ident="ORDER_PACKAGE_ORDERNR1" }][{ $order->oxorder__oxordernr->value}] - [{ oxmultilang ident="ORDER_PACKAGE_ORDERNR2" }] [{ $order->oxorder__oxorderdate->value|oxformdate:"datetime":true }]<br><br>
+        [{* ---- jxInventory Extension - Begin ---- *}]
+        [{assign var=jxLineStyle value="font-weight:bold;background-color:#efefef;"}]
+        [{* ---- jxInventory Extension - End ---- *}]
+        <table cellspacing="2" cellpadding="0" border="0" width="100%">
+        [{foreach from=$order->getOrderArticles(true) item=article}]
             <tr>
+                <td class="packitem" valign="top"><div style="[{$jxLineStyle}]">[{ $article->oxorderarticles__oxamount->value }]</div></td>
+                <td class="packitem" valign="top"><div style="[{$jxLineStyle}]">[{ $article->oxorderarticles__oxartnum->value }]</div></td>
+                <td class="packitem" valign="top"><div style="[{$jxLineStyle}]">[{ $article->oxorderarticles__oxtitle->value }]</div>
+                    [{* ---- jxInventory Extension - Begin ---- *}]
+                    [{assign var=jxInv value=$article->jxGetInventoryLocation()}]
+                    [{* $article->oxorderarticles__oxid->value *}] 
+                    [{if $jxInv }]
+                    <span style="color:#00aa00;">[{ $jxInv.Site }] - [{ $jxInv.Store }] - [{ $jxInv.Rack }] - [{ $jxInv.Level }]</span>
+                    [{else}]
+                    <span style="color:#aa0000; font-style:italic">[{ oxmultilang ident="JXINVENTORY_NOTPRESENT" }]</san>
+                    [{/if}]
+                    [{* ---- jxInventory Extension - End ---- *}]
+
+                [{foreach key=sVar from=$article->getPersParams() item=aParam name=persparams}]
+                    [{if $aParam }]
+                        <br />
+                        [{if $smarty.foreach.persparams.first && $smarty.foreach.persparams.last}]
+                            [{ oxmultilang ident="ORDER_PACKAGE_DETAILS" }] 
+                        [{else}]
+                            [{$sVar}] : 
+                        [{/if}]
+                        [{$aParam}]
+                    [{/if }]
+                [{/foreach}]
+
+                </td>
+                <td class="packitem" valign="top"><div style="[{$jxLineStyle}]">[{ $article->oxorderarticles__oxselvariant->value}]&nbsp;</div></td>
+                <td class="packitem" valign="top"><img src="[{$oViewConf->getImageUrl()}]/rectangle.gif" alt="" width="20" height="20" border="0"></td>
+            </tr>
+            [{assign var=_wrap value=$article->getWrapping()}]
+            [{if $_wrap }]
+                <tr>
                     <td class="listitem" valign="top"></td>
                     <td class="listitem" valign="top"></td>
-                    <td class="listitem" valign="top"><b>[{ $_card->oxwrapping__oxname->value }]</b></td>
+                    <td class="listitem" valign="top">[{ $_wrap->oxwrapping__oxname->value }]</td>
                     <td class="listitem" valign="top"></td>
                     <td class="listitem" valign="middle"></td>
-            </tr>
+                </tr>
             [{/if}]
-            </table>
+        [{/foreach}]
+
+        [{assign var=_card value=$order->getGiftCard()}]
+        [{if $_card}]
+        <tr>
+            <td class="listitem" valign="top"></td>
+            <td class="listitem" valign="top"></td>
+            <td class="listitem" valign="top"><b>[{ $_card->oxwrapping__oxname->value }]</b></td>
+            <td class="listitem" valign="top"></td>
+            <td class="listitem" valign="middle"></td>
+        </tr>
+        [{/if}]
+        </table>
     </td>
 </tr>
 </table>

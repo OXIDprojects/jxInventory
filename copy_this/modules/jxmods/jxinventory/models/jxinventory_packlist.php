@@ -17,7 +17,8 @@
  *
  * @link      https://github.com/job963/jxInventory
  * @license   http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
- * @copyright (C) Joachim Barthel 2012-2013
+ * @copyright (C) 2012-2015 Joachim Barthel
+ * @author    Joachim Barthel <jobarthel@gmail.com>
  * 
  */
 

@@ -1,11 +1,10 @@
-[{*debug*}]
 [{include file="headitem.tpl" title="GENERAL_ADMIN_TITLE"|oxmultilangassign box=" "}]
 
 <script type="text/javascript">
   if(top)
   {
-    top.sMenuItem    = "[{ oxmultilang ident="custservice_module" }]";
-    top.sMenuSubItem = "[{ oxmultilang ident="custservice_menu" }]";
+    top.sMenuItem    = "[{ oxmultilang ident="mxmanageprod" }]";
+    top.sMenuSubItem = "[{ oxmultilang ident="jxinventory_displaylist" }]";
     top.sWorkArea    = "[{$_act}]";
     top.setTitle();
   }
@@ -68,6 +67,9 @@ function editThis( sID )
             onClick="javascript:document.forms['showinv'].elements['fnc'].value = 'downloadResult';" 
             value=" [{ oxmultilang ident="JXINVENTORY_DOWNLOAD" }] " [{ $readonly }]>
     </h2>
+    <div style="position:absolute;top:4px;right:8px;color:gray;font-size:0.9em;border:1px solid gray;border-radius:3px;">
+        &nbsp;[{$sModuleId}]&nbsp;[{$sModuleVersion}]&nbsp;
+    </div>
           
     [{assign var="totalbuysum" value="0.0"}]
     [{assign var="totalsellsum" value="0.0"}]

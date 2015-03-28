@@ -2,12 +2,12 @@
 /**
  *    This file is part of the module jxInventory for OXID eShop Community Edition.
  *
- *    OXID eShop Community Edition is free software: you can redistribute it and/or modify
+ *    The module jxInventory for OXID eShop Community Edition is free software: you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as published by
  *    the Free Software Foundation, either version 3 of the License, or
  *    (at your option) any later version.
  *
- *    OXID eShop Community Edition is distributed in the hope that it will be useful,
+ *    The module jxInventory for OXID eShop Community Edition is distributed in the hope that it will be useful,
  *    but WITHOUT ANY WARRANTY; without even the implied warranty of
  *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *    GNU General Public License for more details.
@@ -17,7 +17,8 @@
  *
  * @link      https://github.com/job963/jxInventory
  * @license   http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
- * @copyright (C) Joachim Barthel 2012-2013
+ * @copyright (C) 2012-2015 Joachim Barthel
+ * @author    Joachim Barthel <jobarthel@gmail.com>
  * 
  */
 
@@ -30,17 +31,14 @@ class jxinventory_list extends Article_List
     public function render()
     {
         parent::render();
-        $oSmarty = oxUtilsView::getInstance()->getSmarty();
-        $oSmarty->assign( "oViewConf", $this->_aViewData["oViewConf"]);
-        $oSmarty->assign( "shop", $this->_aViewData["shop"]);
 
         $sWhere = "";
-        if ( is_array( $aWhere = oxConfig::getParameter( 'jxwhere' ) ) ) {
+        if ( is_array( $aWhere = $this->getConfig()->getRequestParameter( 'jxwhere' ) ) ) {
             $sWhere = $this->_defineWhere( $aWhere );
         }
         
-        $dispMode = oxConfig::getParameter( 'dispmode' );
-        $sortCol = oxConfig::getParameter( 'sortcol' );
+        $dispMode = $this->getConfig()->getRequestParameter( 'dispmode' );
+        $sortCol = $this->getConfig()->getRequestParameter( 'sortcol' );
         
         if (empty($dispMode))
             $dispMode = 'details';
@@ -57,10 +55,15 @@ class jxinventory_list extends Article_List
         $aInventory = array();
         $aInventory = $this->_retrieveData( $dispMode, $sWhere, $sSort );
         
-        $oSmarty->assign("aInventory", $aInventory);
-        $oSmarty->assign("aWhere", $aWhere);
-        $oSmarty->assign("sortcol", $sortCol);
-        $oSmarty->assign("dispmode", $dispMode);
+        $this->_aViewData["aInventory"] = $aInventory;
+        $this->_aViewData["aWhere"] = $aWhere;
+        $this->_aViewData["sortcol"] = $sortcol;
+        $this->_aViewData["dispmode"] = $dispMode;
+        
+        $oModule = oxNew('oxModule');
+        $oModule->load('jxinventory');
+        $this->_aViewData["sModuleId"] = $oModule->getId();
+        $this->_aViewData["sModuleVersion"] = $oModule->getInfo('version');
 
         if ($dispMode == 'details')
             return $this->_sThisTemplateList;
@@ -72,12 +75,12 @@ class jxinventory_list extends Article_List
     public function downloadResult()
     {
         $sWhere = "";
-        if ( is_array( $aWhere = oxConfig::getParameter( 'jxwhere' ) ) ) {
+        if ( is_array( $aWhere = $this->getConfig()->getRequestParameter( 'jxwhere' ) ) ) {
             $sWhere = $this->_defineWhere( $aWhere );
         }
         
-        $dispMode = oxConfig::getParameter( 'dispmode' );
-        $sortCol = oxConfig::getParameter( 'sortcol' );
+        $dispMode = $this->getConfig()->getRequestParameter( 'dispmode' );
+        $sortCol = $this->getConfig()->getRequestParameter( 'sortcol' );
         
         if (empty($dispMode))
             $dispMode = 'details';
@@ -113,7 +116,7 @@ class jxinventory_list extends Article_List
     
     public function copyInv2Shop()
     {
-        $sId = oxConfig::getParameter( 'oxid' );
+        $sId = $this->getConfig()->getRequestParameter( 'oxid' );
         
         $oDb = oxDb::getDb( oxDB::FETCH_MODE_ASSOC );
         

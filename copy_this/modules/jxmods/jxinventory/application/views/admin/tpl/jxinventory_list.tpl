@@ -88,7 +88,7 @@ function editThis( sID )
 	
     <div style="position:absolute; top:20px; left:300px;">
         <a href="javascript:document.forms.showinv.fnc.value='';document.forms.showinv.sortcol.value='';document.forms.showinv.dispmode.value='summary';document.forms.showinv.submit();" class="listheader">
-            <span style="">[{ oxmultilang ident="JXINVENTORY_SHOWSUMMARY" }]</span>
+            <span style="text-decoration: underline;">[{ oxmultilang ident="JXINVENTORY_SHOWSUMMARY" }]</span>
         </a>
     </div>
 
@@ -132,25 +132,25 @@ function editThis( sID )
                 <a href="javascript:document.forms.showinv.sortcol.value='oxartnum';document.forms.showinv.submit();" class="listheader">
                     [{ oxmultilang ident="GENERAL_ARTNUM" }]
                 </a>
-                [{ if $sortcol == 'oxartnum' }]<span style="font-size:1.5em;">&nbsp;&nbsp;&blacktriangle;</span>[{/if}]
+                [{if $sortcol == 'oxartnum' }]<span style="font-size:1.5em;">&nbsp;&nbsp;&blacktriangle;</span>[{/if}]
             </td>
             <td class="listheader">
                 <a href="javascript:document.forms.showinv.sortcol.value='oxtitle';document.forms.showinv.submit();" class="listheader">
                     [{ oxmultilang ident="GENERAL_TITLE" }]
                 </a>
-                [{ if $sortcol == 'oxtitle' }]<span style="font-size:1.5em;">&nbsp;&nbsp;&blacktriangle;</span>[{/if}]
+                [{if $sortcol == 'oxtitle' }]<span style="font-size:1.5em;">&nbsp;&nbsp;&blacktriangle;</span>[{/if}]
             </td>
             <td class="listheader">
                 <a href="javascript:document.forms.showinv.sortcol.value='oxvarselect';document.forms.showinv.submit();" class="listheader">
                     [{ oxmultilang ident="tbclarticle_variant" }]
                 </a>
-                [{ if $sortcol == 'oxvarselect' }]<span style="font-size:1.5em;">&nbsp;&nbsp;&nbsp;&blacktriangle;</span>[{/if}]
+                [{if $sortcol == 'oxvarselect' }]<span style="font-size:1.5em;">&nbsp;&nbsp;&nbsp;&blacktriangle;</span>[{/if}]
             </td>
             <td class="listheader">
                 <a href="javascript:document.forms.showinv.sortcol.value='oxvendor';document.forms.showinv.submit();" class="listheader">
                     [{ oxmultilang ident="GENERAL_VENDOR" }]
                 </a>
-                [{ if $sortcol == 'oxvendor' }]<span style="font-size:1.5em;">&nbsp;&nbsp;&nbsp;&blacktriangle;</span>[{/if}]
+                [{if $sortcol == 'oxvendor' }]<span style="font-size:1.5em;">&nbsp;&nbsp;&nbsp;&blacktriangle;</span>[{/if}]
             </td>
             <td class="listheader" style="text-align:right; padding-right:20px;">
                 <table cellspacing="0" cellpadding="0" width="100%" border="0"><tr>
@@ -166,13 +166,13 @@ function editThis( sID )
                 <a href="javascript:document.forms.showinv.sortcol.value='invsite';document.forms.showinv.submit();" class="listheader">
                     [{ oxmultilang ident="JXINVENTORY_SITE" }]
                 </a>
-                [{ if $sortcol == 'invsite' }]<span style="font-size:1.5em;">&nbsp;&nbsp;&blacktriangle;</span>[{/if}]
+                [{if $sortcol == 'invsite' }]<span style="font-size:1.5em;">&nbsp;&nbsp;&blacktriangle;</span>[{/if}]
             </td>
             <td class="listheader">
                 <a href="javascript:document.forms.showinv.sortcol.value='invstore';document.forms.showinv.submit();" class="listheader">
                     [{ oxmultilang ident="JXINVENTORY_STORE" }]
                 </a>
-                [{ if $sortcol == 'invstore' }]<span style="font-size:1.5em;">&nbsp;&nbsp;&blacktriangle;</span>[{/if}]
+                [{if $sortcol == 'invstore' }]<span style="font-size:1.5em;">&nbsp;&nbsp;&blacktriangle;</span>[{/if}]
             </td>
             <td class="listheader">[{ oxmultilang ident="JXINVENTORY_RACK" }]</td>
             <td class="listheader">[{ oxmultilang ident="JXINVENTORY_LEVEL" }]</td>
@@ -180,13 +180,13 @@ function editThis( sID )
         [{foreach name=outer item=Inventory from=$aInventory}]
             [{ cycle values="listitem,listitem2" assign="listclass" }]
             [{assign var="rownum" value=$rownum+1}]
-            [{ if $Inventory.jxinvstock > 0 }]
+            [{if $Inventory.jxinvstock > 0 }]
                 [{assign var="totalbuysum" value=$totalbuysum+$Inventory.invbuysum}]
                 [{assign var="totalsellsum" value=$totalsellsum+$Inventory.invsellsum}]
                 [{assign var="stocksum" value=$stocksum+$Inventory.jxinvstock}]
             [{/if}]
             <tr>
-                <td valign="top" class="[{ $listclass}][{ if $Inventory.oxactive == 1}] active[{/if}]" height="15">
+                <td valign="top" class="[{ $listclass}][{if $Inventory.oxactive == 1}] active[{/if}]" height="15">
                     <div class="listitemfloating">&nbsp</a></div>
 				</td>
                 <td class="[{ $listclass }]">
@@ -213,10 +213,10 @@ function editThis( sID )
                 <td class="[{ $listclass }]" style="text-align:right; padding-right:10px;"><span style="[{if $Inventory.invbuysum <= 0.0}]color:#ff0000;[{/if}]">[{ $Inventory.invbuysum|string_format:"%.2f" }]</span></td>
                 <td class="[{ $listclass }]" style="text-align:right; padding-right:10px;"><span style="[{if $Inventory.invsellsum <= 0.0}]color:#ff0000;[{/if}]">[{ $Inventory.invsellsum|string_format:"%.2f" }]</span></td>
                 <td class="[{ $listclass }]">
-                    [{ if $Inventory.oxstockflag == 1 }][{ oxmultilang ident="GENERAL_STANDARD" }][{/if}]
-                    [{ if $Inventory.oxstockflag == 2 }][{ oxmultilang ident="GENERAL_OFFLINE" }][{/if}]
-                    [{ if $Inventory.oxstockflag == 3 }][{ oxmultilang ident="GENERAL_NONORDER" }][{/if}]
-                    [{ if $Inventory.oxstockflag == 4 }][{ oxmultilang ident="GENERAL_EXTERNALSTOCK" }][{/if}]
+                    [{if $Inventory.oxstockflag == 1 }][{ oxmultilang ident="GENERAL_STANDARD" }][{/if}]
+                    [{if $Inventory.oxstockflag == 2 }][{ oxmultilang ident="GENERAL_OFFLINE" }][{/if}]
+                    [{if $Inventory.oxstockflag == 3 }][{ oxmultilang ident="GENERAL_NONORDER" }][{/if}]
+                    [{if $Inventory.oxstockflag == 4 }][{ oxmultilang ident="GENERAL_EXTERNALSTOCK" }][{/if}]
                 </td>
                 <td class="[{ $listclass }]">[{ $Inventory.jxinvsite }]</td>
                 <td class="[{ $listclass }]">[{ $Inventory.jxinvstore }]</td>

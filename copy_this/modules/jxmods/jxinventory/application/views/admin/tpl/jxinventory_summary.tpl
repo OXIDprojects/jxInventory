@@ -94,7 +94,7 @@ function editThis( sID )
 	
     <div style="position:absolute; top:20px; left:300px;">
         <a href="javascript:document.forms.showinv.fnc.value='';document.forms.showinv.sortcol.value='';document.forms.showinv.dispmode.value='details';document.forms.showinv.submit();" class="listheader">
-            <span style="">[{ oxmultilang ident="JXINVENTORY_SHOWDETAILS" }]</span>
+            <span style="text-decoration: underline;">[{ oxmultilang ident="JXINVENTORY_SHOWDETAILS" }]</span>
         </a>
     </div>
 
@@ -122,19 +122,19 @@ function editThis( sID )
                 <a href="javascript:document.forms.showinv.sortcol.value='manutitle';document.forms.showinv.submit();" class="listheader">
                     Hersteller[{* oxmultilang ident="GENERAL_ARTNUM" *}]
                 </a>
-                &nbsp;&nbsp;[{ if $sortcol == 'manutitle' }]<span style="font-size:1.5em;">&blacktriangle;</span>[{/if}]
+                &nbsp;&nbsp;[{if $sortcol == 'manutitle' }]<span style="font-size:1.5em;">&blacktriangle;</span>[{/if}]
             </td>
             <td class="listheader">
                 <a href="javascript:document.forms.showinv.sortcol.value='invstock';document.forms.showinv.submit();" class="listheader">
                     Anzahl Artikel[{* oxmultilang ident="GENERAL_TITLE" *}]
                 </a>
-                &nbsp;&nbsp;[{ if $sortcol == 'invstock' }]<span style="font-size:1.5em;">&blacktriangle;</span>[{/if}]
+                &nbsp;&nbsp;[{if $sortcol == 'invstock' }]<span style="font-size:1.5em;">&blacktriangle;</span>[{/if}]
             </td>
             <td class="listheader">
                 <a href="javascript:document.forms.showinv.sortcol.value='invbuysum';document.forms.showinv.submit();" class="listheader">
                     EK (netto)[{* oxmultilang ident="tbclarticle_variant" *}]
                 </a>
-                &nbsp;&nbsp;[{ if $sortcol == 'invbuysum' }]<span style="font-size:1.5em;">&blacktriangle;</span>[{/if}]
+                &nbsp;&nbsp;[{if $sortcol == 'invbuysum' }]<span style="font-size:1.5em;">&blacktriangle;</span>[{/if}]
             </td>
             <td class="listheader">
 				VK (brutto)&nbsp;&nbsp;[{* oxmultilang ident="GENERAL_ARTICLE_OXSTOCK" *}]
@@ -143,13 +143,13 @@ function editThis( sID )
         [{foreach name=outer item=Inventory from=$aInventory}]
             [{ cycle values="listitem,listitem2" assign="listclass" }]
             [{assign var="rownum" value=$rownum+1}]
-            [{ if $Inventory.invstock > 0 }]
+            [{if $Inventory.invstock > 0 }]
                 [{assign var="totalbuysum" value=$totalbuysum+$Inventory.invbuysum}]
                 [{assign var="totalsellsum" value=$totalsellsum+$Inventory.invsellsum}]
                 [{assign var="stocksum" value=$stocksum+$Inventory.invstock}]
             [{/if}]
             <tr>
-                <td valign="top" class="[{ $listclass}][{ if $Inventory.oxactive == 1}] active[{/if}]" height="15">
+                <td valign="top" class="[{ $listclass}][{if $Inventory.oxactive == 1}] active[{/if}]" height="15">
                     <div class="listitemfloating">&nbsp</a></div>
 				</td>
                 <td class="[{ $listclass }]">
